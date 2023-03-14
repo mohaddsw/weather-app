@@ -1,6 +1,6 @@
 import ax from 'axios'
 const keyId=`6d3b35c10c29fe17eb773fdbe64ed49d`
-const BaseUrl=`https://api.openweathermap.org/data/2.5/appid=${keyId}`
+const BaseUrl=`https://api.openweathermap.org/data/2.5/&appid=${keyId}`
 const axiosInstance = () => {
 
     const axios = ax.create(
@@ -16,4 +16,4 @@ const axiosInstance = () => {
     return axios
 }
 
-export default axiosInstance
+export default axiosInstance()
