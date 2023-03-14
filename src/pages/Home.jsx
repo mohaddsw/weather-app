@@ -3,20 +3,33 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import axios from "../plugins/axios";
+import { useSelector,useDispatch  } from 'react-redux'
+import {fetchWeatherApp} from '../stores/wetherSlice.js'
 import { useEffect, useState } from "react";
-import { borderRadius, color } from "@mui/system";
 
 const Home = () => {
+  const dispatch=useDispatch()
+  const apiKey = useSelector((state) => state.wether.apiKey)
+  const weatherData = useSelector((state) => state.wether.weatherData)
+  const [data,setData]=useState()
   const enterCityName=(e)=>{
     if(e.key==='Enter'){
-      axios.get(`&weather?q=${e.target.value}&units=metric`)
-      .then(res=>{
-        console.log(res);
-      })
+      dispatch(fetchWeatherApp('tehran',apiKey))
+      if( typeof weatherData ==='string'){
+        alert('خطا در ارتباط با دیتابیس.')
+       
+      }
       
     }
   }
+  useEffect(()=>{
+     dispatch(fetchWeatherApp('tehran',apiKey))
+    if( typeof weatherData ==='string'){
+      alert('خطا در ارتباط با دیتابیس.')
+     
+    }
+    console.log(weatherData);     
+  },[])
   return (
     <Box sx={{ height: "100vh", padding: "20px" }}>
       <Grid
