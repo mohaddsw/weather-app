@@ -1,5 +1,4 @@
 import axios from '../plugins/axios'
-// eslint-disable-next-line import/no-anonymous-default-export
 
     const weathe={
         httpsGetWeather(data){

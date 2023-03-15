@@ -13,7 +13,6 @@ const Home = () => {
   const apiKey = useSelector((state) => state.wether.apiKey);
   const weatherData = useSelector((state) => state.wether.weatherData);
   const loading = useSelector((state) => state.wether.loading);
-  const [data, setData] = useState();
   const enterCityName = (e) => {
     if (e.key === "Enter") {
       const data = { city: e.target.value, apiKey: apiKey };
@@ -27,6 +26,7 @@ const Home = () => {
   useEffect(() => {
     const data = { city: "tehran", apiKey: apiKey };
     dispatch(fetchWeatherApp(data));
+    console.log(weatherData,"data ");
     if (typeof weatherData === "string") {
       alert("خطا در ارتباط با دیتابیس.");
     }
@@ -54,7 +54,7 @@ const Home = () => {
             display: "flex",
           }}
         >
-          <Grid item md={12} sm={12}>
+          <Grid item md={12} >
             <TextField
               id="outlined-basic"
               label="city name"
@@ -125,7 +125,7 @@ const Home = () => {
                 <span>  {weatherData?.main? weatherData.main.humidity : "..."} F</span>
               </Grid>
               <Grid>
-                <span>Humedity</span>
+                <span>humidity</span>
               </Grid>
             </Grid>
             <Grid
