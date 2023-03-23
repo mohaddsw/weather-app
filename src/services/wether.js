@@ -1,12 +1,12 @@
-import axios from '../plugins/axios'
+import axios from 'axios'
 
-    const weathe={
+    const weather={
         httpsGetWeather(data){
             return axios({
-                method:'GET',
-                url:`/data/2.5/weather?q=${data.city}&units=metric&appid=${data.apiKey}`
+                method:'get',
+                url:`https://api.openweathermap.org/data/2.5/weather?q=${data.city}&units=metric&appid=${data.apiKey}`
             })
         }
     }
-    export default weathe
+    export default weather
 

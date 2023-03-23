@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchWeatherApp } from "../stores/wetherSlice.js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,19 +17,12 @@ const Home = () => {
     if (e.key === "Enter") {
       const data = { city: e.target.value, apiKey: apiKey };
       dispatch(fetchWeatherApp(data));
-      console.log(weatherData, "data");
-      if (typeof weatherData === "string") {
-        alert("خطا در ارتباط با دیتابیس.");
-      }
+      
     }
   };
   useEffect(() => {
     const data = { city: "tehran", apiKey: apiKey };
     dispatch(fetchWeatherApp(data));
-    console.log(weatherData,"data ");
-    if (typeof weatherData === "string") {
-      alert("خطا در ارتباط با دیتابیس.");
-    }
   }, []);
   return (
     <Box
